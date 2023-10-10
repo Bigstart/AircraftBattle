@@ -10,5 +10,8 @@ class MainScene : public QWidget
 public:
     MainScene(QWidget *parent = nullptr);
     ~MainScene();
+
+    //初始化场景
+    void initScene();
 };
 #endif // MAINSCENE_H
