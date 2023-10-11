@@ -10,16 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainscene.cpp
+    mainscene.cpp \
+    map.cpp
 
 HEADERS += \
     config.h \
-    mainscene.h
+    mainscene.h \
+    map.h
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    res.qrc
