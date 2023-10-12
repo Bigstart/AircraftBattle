@@ -9,12 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    heroplane.cpp \
     main.cpp \
     mainscene.cpp \
     map.cpp
 
 HEADERS += \
     config.h \
+    heroplane.h \
     mainscene.h \
     map.h
 

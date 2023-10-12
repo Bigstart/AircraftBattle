@@ -1,5 +1,7 @@
 #include "map.h"
 #include "config.h"
+#include <QDebug>
+
 
 Map::Map()
 {
@@ -24,11 +26,11 @@ void Map::mapPosition()
         m_map1_posY=-GAME_HEIGHT;
     }
 
+
     //处理第二张图片滚动位置
     m_map2_posY+=m_scroll_speed;
-    if(m_map1_posY>GAME_HEIGHT)
+    if(m_map2_posY>GAME_HEIGHT)
     {
-        m_map1_posY=0;
+        m_map2_posY=0;
     }
-
 }

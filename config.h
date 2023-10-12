@@ -13,8 +13,8 @@
 #define MAP_PATH  ":/res/img_bg_level_1.jpg"   //地图路径
 #define MAP_SCROLL_SPEED  1                    //地图滚动速度
 
-
-
+//------------飞机配置数据-----------------------
+#define HERO_PATH ":/res/hero2.png"
 
 
 #endif // CONFIG_H
