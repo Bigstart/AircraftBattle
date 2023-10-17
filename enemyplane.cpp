@@ -7,8 +7,8 @@ EnemyPlane::EnemyPlane()
     m_enemy.load(ENEMY_PATH);
 
     //敌机位置
-    m_X=0;
-    m_y=0;
+    m_X = 0;
+    m_Y = 0;
 
     //敌机状态
     m_Free = true;
@@ -32,12 +32,12 @@ void EnemyPlane::updatePosition()
     }
 
     m_Y += m_Speed;
-    m_Rect.moveTo(m_X,m_y);
+    m_Rect.moveTo(m_X,m_Y);
 
     //如果超出屏幕 重置空闲状态
-    if(m_Y>=GAME_HEIGHT+m_enemy.height())
+    if(m_Y>=GAME_HEIGHT+m_Rect.height())
     {
-
+        m_Free = true;
     }
 
 }
