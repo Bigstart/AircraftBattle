@@ -14,7 +14,7 @@ public:
 
 public:
     //敌机资源对象
-    Qpixmap m_enemy;
+    QPixmap m_enemy;
 
     //位置
     int m_X;
