@@ -32,6 +32,9 @@ void MainScene::initScene()
 
     //定时器
     m_Timer.setInterval(GAME_RATE);
+
+    //敌机出场时间间隔 初始化
+    m_recorder = 0;
 }
 
 void MainScene::playGame()
@@ -41,6 +44,9 @@ void MainScene::playGame()
 
     //监听定时器发送的信号
     connect(&m_Timer,&QTimer::timeout,[=](){
+        //敌机出厂
+        enemyToScene();
+
         //更新游戏中元素的坐标
         updatePosition();
 
@@ -55,11 +61,8 @@ void MainScene::updatePosition()
 {
     //更新地图的坐标
     m_map.mapPosition();
-
-
     //发射子弹
     m_hero.shoot();
-
     //计算所有非空闲子弹的当前坐标
     for(int i =0;i<BULLET_NUM;i++)
     {
@@ -69,10 +72,18 @@ void MainScene::updatePosition()
             m_hero.m_bullets[i].updatePosition();
         }
     }
-
     //测试子弹
     //temp_Bullet.m_Free=false;
     //temp_Bullet.updatePosition();
+
+    //敌机出厂
+    for(int i =0;i<ENEMY_NUM;i++)
+    {
+        if(m_enemys[i].m_Free == false)
+        {
+            m_enemys[i].updatePosition();
+        }
+    }
 
 }
 
@@ -96,6 +107,16 @@ void MainScene::paintEvent(QPaintEvent *)
             painter.drawPixmap(m_hero.m_bullets[i].m_X,m_hero.m_bullets[i].m_Y,m_hero.m_bullets[i].m_Bullet);
         }
 
+    }
+
+    //绘制敌机
+    for(int i =0;i<ENEMY_NUM;i++)
+    {
+        if(m_enemys[i].m_Free==false)
+        {
+            //如果非空闲 绘制
+            painter.drawPixmap(m_enemys[i].m_X,m_enemys[i].m_Y,m_enemys[i].m_enemy);
+        }
     }
 
     //测试子弹
@@ -148,6 +169,31 @@ void MainScene::keyPressEvent(QKeyEvent *event)
     }
 
 
+
+}
+
+void MainScene::enemyToScene()
+{
+    m_recorder++;
+    //未达到出场间隔直接return
+    if(m_recorder<ENEMY_INTERVAL)
+    {
+        return;
+    }
+    m_recorder = 0;
+    for(int i = 0;i<ENEMY_NUM;i++)
+    {
+        //如果是空闲敌机 出场
+        if(m_enemys[i].m_Free)
+        {
+            m_enemys[i].m_Free = false;
+
+            //坐标
+            m_enemys[i].m_X = rand()%(GAME_WIDTH-m_enemys[i].m_Rect.width());
+            m_enemys[i].m_Y = -m_enemys[i].m_Rect.height();
+            break;
+        }
+    }
 
 }
 

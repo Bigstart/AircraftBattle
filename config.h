@@ -24,8 +24,8 @@
 
 //------------敌机配置数据-----------------------
 #define ENEMY_PATH ":/res/img-plane_5.png"   //敌机资源图片
-#define ENEMY_SPEED 5   //敌机移动速度
+#define ENEMY_SPEED 2   //敌机移动速度
 #define ENEMY_NUM  20   //敌机总数量
-#define ENEMY_INTERVAL  //敌机出场时间间隔
+#define ENEMY_INTERVAL 140 //敌机出场时间间隔
 
 #endif // CONFIG_H

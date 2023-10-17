@@ -6,6 +6,8 @@
 #include "map.h"
 #include "heroplane.h"
 #include "bullet.h"
+#include "enemyplane.h"
+#include <ctime>
 
 class MainScene : public QWidget
 {
@@ -29,6 +31,15 @@ public:
 
     //飞机移动事件
     void keyPressEvent(QKeyEvent* event);
+
+    void enemyToScene();    //敌机出厂
+
+    EnemyPlane m_enemys[ENEMY_NUM];   //敌机数组
+
+    int m_recorder;    //敌机出场间隔记录
+
+    //随机数种子
+    srand((unsigned int) time(NULL));
 
     //地图对象
     Map m_map;
