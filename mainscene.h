@@ -32,7 +32,11 @@ public:
     //飞机移动事件
     void keyPressEvent(QKeyEvent* event);
 
-    void enemyToScene();    //敌机出厂
+    //敌机出厂
+    void enemyToScene();
+
+    //碰撞检测
+    void collisionDetection();
 
     EnemyPlane m_enemys[ENEMY_NUM];   //敌机数组
 

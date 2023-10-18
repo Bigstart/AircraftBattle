@@ -53,6 +53,9 @@ void MainScene::playGame()
         //绘制到屏幕中
         update();
 
+        //碰撞检测的调用
+        collisionDetection();
+
     });
 
 }
@@ -192,6 +195,37 @@ void MainScene::enemyToScene()
             m_enemys[i].m_X = rand()%(GAME_WIDTH-m_enemys[i].m_Rect.width());
             m_enemys[i].m_Y = -m_enemys[i].m_Rect.height();
             break;
+        }
+    }
+
+}
+
+void MainScene::collisionDetection()
+{
+    //遍历所有非空闲的敌机
+    for(int i = 0;i<ENEMY_NUM;i++)
+    {
+        //如果是非空闲的飞机，执行下一次循环
+        if(m_enemys[i].m_Free)
+        {
+            continue;
+        }
+
+        //遍历所有非空闲的子弹
+        for(int j = 0;j<BULLET_NUM;j++)
+        {
+            if(m_hero.m_bullets[i].m_Free)
+            {
+                continue;
+            }
+
+            //如果子弹和飞机相交，发生碰撞。同时将飞机和子弹空闲状态设置为真
+            if(m_enemys[i].m_Rect.intersects(m_hero.m_bullets[j].m_Rect))
+            {
+                m_enemys[i].m_Free = true;
+                m_hero.m_bullets[j].m_Free = true;
+            }
+
         }
     }
 
